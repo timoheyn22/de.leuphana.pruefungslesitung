@@ -20,7 +20,7 @@ public class Account {
     public void debit(PayAmount amount) {
         balance.subtract(amount);
     }
-    // call to add mOney to the Account
+    // call to add money to the Account
     public void credit(PayAmount amount) {
         balance.add(amount);
     }
