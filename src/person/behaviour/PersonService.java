@@ -1,11 +1,10 @@
-package src.behavior.person;
-
+package src.person.behaviour;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import person.creational.PersonFactory;
-import person.structure.Person;
+import src.person.creational.PersonFactory;
+import src.person.structure.Person;
 
 public class PersonService { // Klasse, die das Verhalten/Verwalten steuert.
     private List<Person> persons = new ArrayList<>();
