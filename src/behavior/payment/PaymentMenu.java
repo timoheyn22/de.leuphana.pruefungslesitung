@@ -1,4 +1,5 @@
-package de.leuphana.pruefungslesitung.behavior.payment;
+package src.behavior.payment;
+
 import java.math.BigDecimal;
 import java.util.Scanner;
 
