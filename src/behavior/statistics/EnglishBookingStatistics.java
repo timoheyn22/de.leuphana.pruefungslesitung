@@ -1,6 +1,5 @@
 package src.behavior.statistics;
 
-package de.leuphana.pruefungslesitung.behavior.statistics;
 
 public class EnglishBookingStatistics implements Statistics {
     //saves the payment method

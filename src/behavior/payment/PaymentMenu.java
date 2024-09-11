@@ -1,5 +1,6 @@
 package src.behavior.payment;
 
+import src.behavior.statistics.*;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -74,6 +75,7 @@ public class PaymentMenu {
         // Create sender and receiver accounts
         Account sender = new Account(senderId, new PayAmount(senderBalance));
         Account receiver = new Account(receiverId, new PayAmount(receiverBalance));
+
 
         // Process payment and update statistics
         paymentService.payAmount(sender, receiver, new PayAmount(paymentAmount), paymentType, bookingType, paymentMethod);

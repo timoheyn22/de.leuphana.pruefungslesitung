@@ -1,10 +1,9 @@
 package src.behavior.payment;
 
 
-import de.leuphana.pruefungslesitung.behavior.statistics.*;
+import src.behavior.statistics.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
 
 public class PaymentService {
     // Store accounts in a Map
@@ -21,9 +20,9 @@ public class PaymentService {
 
         // Update statistics based on bookingType and paymentMethod
         if ("German".equalsIgnoreCase(bookingType)) {
-            statisticsService.addBooking(new GermanBookingStatistics(paymentMethod));
+            statisticsService.addBooking(account.getAccountId(), new GermanBookingStatistics(paymentMethod));
         } else if ("English".equalsIgnoreCase(bookingType)) {
-            statisticsService.addBooking(new EnglishBookingStatistics(paymentMethod));
+            statisticsService.addBooking(account.getAccountId(), new EnglishBookingStatistics(paymentMethod));
         }
 
         System.out.println("Account with ID " + account.getAccountId() + " has been added.");

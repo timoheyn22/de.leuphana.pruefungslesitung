@@ -11,7 +11,7 @@ public class StatisticsMenu {
         scanner = new Scanner(System.in);
     }
 
-    public void showMenu() {
+    public void start() {
         while (true) {
             System.out.println("\nStatistics Menu");
             System.out.println("1. Add booking");
@@ -78,5 +78,10 @@ public class StatisticsMenu {
         System.out.println("English bookings paid via Google Wallet: " + statisticsService.getEnglishBookingsPaidByGoogleWallet());
         System.out.println("German bookings paid via Money Wallet: " + statisticsService.getGermanBookingsPaidByMoneyWallet());
         System.out.println("English bookings paid via Money Wallet: " + statisticsService.getEnglishBookingsPaidByMoneyWallet());
+    }
+
+    public static void main(String[] args) {
+        StatisticsMenu menu = new StatisticsMenu();
+        menu.start();
     }
 }

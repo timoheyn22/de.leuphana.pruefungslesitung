@@ -2,7 +2,6 @@ package src.behavior.statistics;
 
 import java.util.HashMap;
 import java.util.Map;
-
 // Service that applies visitors to count the number of bookings by payment method
 public class StatisticsService {
     private Map<String, Statistics> bookings;
@@ -22,7 +21,7 @@ public class StatisticsService {
             bookings.remove(accountId);
             System.out.println("Booking with account ID " + accountId + " removed.");
         } else {
-            System.out.println("Booking with account ID " + accountId + " not found.");
+            System.out.println("Booking with account ID " + accountId + "not found.");
         }
     }
 
