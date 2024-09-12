@@ -8,23 +8,33 @@ import src.person.structure.Person;
 
 public class PersonService { // Klasse, die das Verhalten/Verwalten steuert.
     private List<Person> persons = new ArrayList<>();
+    private Scanner scanner;
 
+    // Initialisiere den Scanner nur einmal im Konstruktor
+    public PersonService() {
+        scanner = new Scanner(System.in);
+    }
+
+    // Erstelle eine Person mit Benutzerinteraktion
     public void createPerson() {
-        Scanner scanner = new Scanner(System.in);
-        try {
+        String type;
+        // Validierung der Eingabe für den Personentyp
+        do {
             System.out.println("Enter type of person (natural/legal): ");
-            String type = scanner.next();
+            type = scanner.next();
+            if (!type.equalsIgnoreCase("natural") && !type.equalsIgnoreCase("legal")) {
+                System.out.println("Invalid type. Please enter 'natural' or 'legal'.");
+            }
+        } while (!type.equalsIgnoreCase("natural") && !type.equalsIgnoreCase("legal"));
 
-            System.out.println("Enter name: ");
-            String name = scanner.next();
+        System.out.println("Enter name: ");
+        String name = scanner.next();
 
-            Person person = PersonFactory.createPerson(type, name);
-            persons.add(person);  // Füge die erstellte Person zur Liste hinzu
+        // Erstelle die Person basierend auf dem eingegebenen Typ
+        Person person = PersonFactory.createPerson(type, name);
+        persons.add(person);  // Füge die erstellte Person zur Liste hinzu
 
-            System.out.println("Created " + type + " with name: " + person.getName());
-        } finally {
-            scanner.close();  // Scanner schließen, um Ressourcen freizugeben
-        }
+        System.out.println("Created " + type + " with name: " + person.getName());
     }
 
     public void listPersons() {

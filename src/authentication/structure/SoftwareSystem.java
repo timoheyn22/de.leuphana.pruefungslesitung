@@ -1,12 +1,12 @@
 package src.authentication.structure;
 
-public abstract class Subject {
+public class SoftwareSystem extends Subject {
     private String name;
 
-    public Subject(String name) {
-        this.name = name;
+    public SoftwareSystem(String name) {
+        super(name);
     }
-
+    @Override
     public String getName() {
         return name;
     }
