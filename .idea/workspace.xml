@@ -116,7 +116,7 @@
       <workItem from="1725918774029" duration="129000" />
       <workItem from="1725918956558" duration="2344000" />
       <workItem from="1726059123473" duration="813000" />
-      <workItem from="1726064755374" duration="13606000" />
+      <workItem from="1726064755374" duration="17044000" />
     </task>
     <servers />
   </component>
@@ -132,19 +132,9 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/behavior/payment/PaymentService.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/behavior/payment/PayPalProcessor.java</url>
           <line>8</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/behavior/payment/PaymentService.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/behavior/payment/PaymentMenu.java</url>
