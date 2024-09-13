@@ -1,6 +1,9 @@
 package src.behavior.payment;
 
 import src.behavior.statistics.*;
+import src.person.creational.PersonFactory;
+import src.person.structure.Person;
+
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -44,16 +47,31 @@ public class PaymentMenu {
     }
 
     private void enterPaymentData(Scanner scanner) {
-        // Enter sender and receiver account data
+        // Enter sender account data
         System.out.print("Enter sender account ID: ");
         String senderId = scanner.next();
         System.out.print("Enter sender balance: ");
         BigDecimal senderBalance = scanner.nextBigDecimal();
 
+        // Enter sender person details
+        System.out.print("Enter sender person type (natural/legal): ");
+        String senderPersonType = scanner.next();
+        System.out.print("Enter sender person name: ");
+        String senderPersonName = scanner.next();
+        Person senderPerson = PersonFactory.createPerson(senderPersonType, senderPersonName);
+
+        // Enter receiver account data
         System.out.print("Enter receiver account ID: ");
         String receiverId = scanner.next();
         System.out.print("Enter receiver balance: ");
         BigDecimal receiverBalance = scanner.nextBigDecimal();
+
+        // Enter receiver person details
+        System.out.print("Enter receiver person type (natural/legal): ");
+        String receiverPersonType = scanner.next();
+        System.out.print("Enter receiver person name: ");
+        String receiverPersonName = scanner.next();
+        Person receiverPerson = PersonFactory.createPerson(receiverPersonType, receiverPersonName);
 
         System.out.print("Enter payment amount: ");
         BigDecimal paymentAmount = scanner.nextBigDecimal();
@@ -72,10 +90,9 @@ public class PaymentMenu {
         System.out.print("Enter payment method: ");
         String paymentMethod = scanner.next();
 
-        // Create sender and receiver accounts
-        Account sender = new Account(senderId, new PayAmount(senderBalance));
-        Account receiver = new Account(receiverId, new PayAmount(receiverBalance));
-
+        // Create sender and receiver accounts with associated persons
+        Account sender = new Account(senderId, new PayAmount(senderBalance), senderPerson);
+        Account receiver = new Account(receiverId, new PayAmount(receiverBalance), receiverPerson);
 
         // Process payment and update statistics
         paymentService.payAmount(sender, receiver, new PayAmount(paymentAmount), paymentType, bookingType, paymentMethod);
@@ -96,6 +113,7 @@ public class PaymentMenu {
         if (account != null) {
             System.out.println("Account ID: " + account.getAccountId());
             System.out.println("Balance: " + account.getBalance().getAmount());
+            System.out.println("Account Owner: " + account.getOwner().getName());
         } else {
             System.out.println("Account not found.");
         }

@@ -1,12 +1,17 @@
 package src.behavior.payment;
 
+import src.person.structure.Person;
+
 public class Account {
     private String accountId;
     private PayAmount balance;
-    //constructor
-    public Account(String accountId, PayAmount balance) {
+    private Person owner;  // New field to store the owner of the account
+
+    // Constructor updated to include the owner (person)
+    public Account(String accountId, PayAmount balance, Person owner) {
         this.accountId = accountId;
         this.balance = balance;
+        this.owner = owner;
     }
 
     public String getAccountId() {
@@ -16,13 +21,16 @@ public class Account {
     public PayAmount getBalance() {
         return balance;
     }
-    //call to subtract money from the Account
+
+    public Person getOwner() {
+        return owner;
+    }
+
     public void debit(PayAmount amount) {
         balance.subtract(amount);
     }
-    // call to add money to the Account
+
     public void credit(PayAmount amount) {
         balance.add(amount);
     }
-
 }

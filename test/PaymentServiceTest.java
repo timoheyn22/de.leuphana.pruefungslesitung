@@ -4,7 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import src.behavior.payment.*;
 import src.behavior.statistics.*;
-
+import src.person.creational.PersonFactory;
+import src.person.structure.Person;
 
 import java.math.BigDecimal;
 
@@ -23,16 +24,19 @@ class PaymentServiceTest {
 
     @Test
     public void testAddAccount() {
-        Account account = new Account("A123", new PayAmount(BigDecimal.valueOf(1000)));
+        Person owner = PersonFactory.createPerson("natural", "John Doe");
+        Account account = new Account("A123", new PayAmount(BigDecimal.valueOf(1000)), owner);
         paymentService.addAccount(account, "German", "PayPal");
 
         assertNotNull(paymentService.getAccount("A123"));
         assertEquals(BigDecimal.valueOf(1000), paymentService.getAccount("A123").getBalance().getAmount());
+        assertEquals("John Doe", paymentService.getAccount("A123").getOwner().getName());
     }
 
     @Test
     public void testDeleteAccount() {
-        Account account = new Account("A123", new PayAmount(BigDecimal.valueOf(500)));
+        Person owner = PersonFactory.createPerson("legal", "Acme Corp");
+        Account account = new Account("A123", new PayAmount(BigDecimal.valueOf(500)), owner);
         paymentService.addAccount(account, "German", "PayPal");
 
         paymentService.deleteAccount("A123");
@@ -41,8 +45,11 @@ class PaymentServiceTest {
 
     @Test
     public void testPayAmountWithPayPal() {
-        Account sender = new Account("S123", new PayAmount(BigDecimal.valueOf(1000)));
-        Account receiver = new Account("R123", new PayAmount(BigDecimal.valueOf(500)));
+        Person senderPerson = PersonFactory.createPerson("natural", "Alice");
+        Person receiverPerson = PersonFactory.createPerson("legal", "Bob Inc.");
+
+        Account sender = new Account("S123", new PayAmount(BigDecimal.valueOf(1000)), senderPerson);
+        Account receiver = new Account("R123", new PayAmount(BigDecimal.valueOf(500)), receiverPerson);
         PayAmount amount = new PayAmount(BigDecimal.valueOf(200));
 
         paymentService.payAmount(sender, receiver, amount, PaymentType.PAYPAL, "German", "PayPal");
@@ -54,10 +61,14 @@ class PaymentServiceTest {
         assertNotNull(paymentService.getAccount("S123"));
         assertNotNull(paymentService.getAccount("R123"));
     }
+
     @Test
     public void testPayAmountWithMobileMoneyWallet() {
-        Account sender = new Account("S789", new PayAmount(BigDecimal.valueOf(1000)));
-        Account receiver = new Account("R789", new PayAmount(BigDecimal.valueOf(500)));
+        Person senderPerson = PersonFactory.createPerson("natural", "Charlie");
+        Person receiverPerson = PersonFactory.createPerson("legal", "Delta Inc.");
+
+        Account sender = new Account("S789", new PayAmount(BigDecimal.valueOf(1000)), senderPerson);
+        Account receiver = new Account("R789", new PayAmount(BigDecimal.valueOf(500)), receiverPerson);
         PayAmount amount = new PayAmount(BigDecimal.valueOf(200));
 
         paymentService.payAmount(sender, receiver, amount, PaymentType.MOBILE_MONEY_WALLET, "German", "MobileMoneyWallet");
@@ -70,11 +81,13 @@ class PaymentServiceTest {
         assertNotNull(paymentService.getAccount("R789"));
     }
 
-
     @Test
     public void testPayAmountWithGoogleWallet() {
-        Account sender = new Account("S456", new PayAmount(BigDecimal.valueOf(2000)));
-        Account receiver = new Account("R456", new PayAmount(BigDecimal.valueOf(300)));
+        Person senderPerson = PersonFactory.createPerson("natural", "Eve");
+        Person receiverPerson = PersonFactory.createPerson("legal", "Foxtrot Ltd.");
+
+        Account sender = new Account("S456", new PayAmount(BigDecimal.valueOf(2000)), senderPerson);
+        Account receiver = new Account("R456", new PayAmount(BigDecimal.valueOf(300)), receiverPerson);
         PayAmount amount = new PayAmount(BigDecimal.valueOf(500));
 
         paymentService.payAmount(sender, receiver, amount, PaymentType.GOOGLE_WALLET, "English", "GoogleWallet");
@@ -89,8 +102,11 @@ class PaymentServiceTest {
 
     @Test
     public void testUpdateStatisticsOnAddAndDelete() {
-        Account account1 = new Account("A1", new PayAmount(BigDecimal.valueOf(1500)));
-        Account account2 = new Account("A2", new PayAmount(BigDecimal.valueOf(800)));
+        Person owner1 = PersonFactory.createPerson("natural", "George");
+        Person owner2 = PersonFactory.createPerson("legal", "Hacker Corp");
+
+        Account account1 = new Account("A1", new PayAmount(BigDecimal.valueOf(1500)), owner1);
+        Account account2 = new Account("A2", new PayAmount(BigDecimal.valueOf(800)), owner2);
 
         paymentService.addAccount(account1, "German", "PayPal");
         paymentService.addAccount(account2, "English", "GoogleWallet");

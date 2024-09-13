@@ -18,14 +18,15 @@ public class PaymentService {
     public void addAccount(Account account, String bookingType, String paymentMethod) {
         accounts.put(account.getAccountId(), account);
 
+        // Print account owner details
+        System.out.println("Account with ID " + account.getAccountId() + " owned by " + account.getOwner().getName() + " has been added.");
+
         // Update statistics based on bookingType and paymentMethod
         if ("German".equalsIgnoreCase(bookingType)) {
             statisticsService.addBooking(account.getAccountId(), new GermanBookingStatistics(paymentMethod));
         } else if ("English".equalsIgnoreCase(bookingType)) {
             statisticsService.addBooking(account.getAccountId(), new EnglishBookingStatistics(paymentMethod));
         }
-
-        System.out.println("Account with ID " + account.getAccountId() + " has been added.");
     }
 
     // Deleting an account by accountId and updating statistics
