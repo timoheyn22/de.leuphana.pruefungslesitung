@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56ceb321-aef6-46e3-91dd-6c39e239e4d2" name="Changes" comment="" />
+    <list default="true" id="56ceb321-aef6-46e3-91dd-6c39e239e4d2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Booking/Booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Booking/BookingPaymentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Booking/EnglishBookingBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Booking/GermanBookingBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Payment/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Payment/CurrencyAmount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Payment/GoogleWalletPayment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Payment/PayPalPayment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Payment/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/de.leuphana.pruefungslesitung.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/de.leuphana.pruefungslesitung.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,36 +46,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.PaymentMenu.executor": "Run",
-    "Application.StatisticsMenu.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.PaymentServiceTest.executor": "Run",
-    "JUnit.PersonServiceTest.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Timo/Documents/de.leuphana.pruefungslesitung",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.PaymentMenu.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StatisticsMenu.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.PaymentServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PersonServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Timo/Documents/de.leuphana.pruefungslesitung&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Timo\Documents\de.leuphana.pruefungslesitung" />
