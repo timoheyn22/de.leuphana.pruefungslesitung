@@ -6,7 +6,9 @@ public class NaturalPerson extends Subject implements Person  { //Implementiert 
     private String name;
 
     public NaturalPerson(String name) {
+
         super(name);
+        this.name = name;  // Also set the local name field
     }
 
     @Override

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream; // Zum Testen der Scanner Klasse
 import java.io.InputStream;
 
-import src.person.behaviour.PersonService
+import src.person.behaviour.PersonService;
 public class PersonServiceTest {
 
     private PersonService personService;
