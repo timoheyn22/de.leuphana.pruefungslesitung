@@ -35,7 +35,7 @@ public class BookingService {
                 .setBookingId(bookingId)
                 .setPerson(person)
                 .setResource(resource)
-                .setBookingType(language);  // Set the booking type based on the language
+                .setBookingType(language);
 
         Booking booking = builder.build();
         bookings.add(booking);
@@ -47,13 +47,25 @@ public class BookingService {
         System.out.println("Booking with ID: " + bookingId + " has been removed.");
     }
 
+    public String getBookingBodyById(String bookingId) {
+        for (Booking booking : bookings) {
+            if (booking.getBookingId().equals(bookingId)) {
+                return booking.getBody();
+            }
+        }
+        return "Booking with ID: " + bookingId + " not found.";
+    }
+
     public void listBookings() {
         if (bookings.isEmpty()) {
             System.out.println("No bookings available.");
             return;
         }
         for (Booking booking : bookings) {
-            System.out.println(booking.getHeader() + "\n" + booking.getBody() + "\n" + booking.getFooter() + "\n");
+            System.out.println("Booking ID: " + booking.getBookingId() + "\n" +
+                    "Header: " + booking.getHeader() + "\n" +
+                    "Body: " + booking.getBody() + "\n" +
+                    "Footer: " + booking.getFooter() + "\n");
         }
     }
 }
