@@ -1,4 +1,4 @@
-package src.Payment2;
+/*package src.Payment2;
 
 import src.Booking.Booking;
 import src.behavior.payment.Account;
@@ -25,3 +25,4 @@ public abstract class PaymentService {
     // Step 2: Muss in den Subklassen implementiert werden
     protected abstract void processPayment(Account senderAccount, Account receiverAccount, CurrencyAmount amount, Booking booking);
 }
+*/

@@ -1,19 +1,29 @@
 package src.Resource;
 
-import src.Booking.Booking;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResourceService {
+    private List<Resource> resources = new ArrayList<>();
 
-    public Resource getSelectedResource(String resourceType, Booking booking) {
-        switch (resourceType) {
-            case "Car":
-                return new Car(booking);
-            case "SetTopBox":
-                return new SetTopBox(booking);
-            case "ChildSeat":
-                return new ChildSeat(booking);
-            default:
-                throw new IllegalArgumentException("Unknown resource type: " + resourceType);
+    public void addResource(Resource resource) {
+        resources.add(resource);
+    }
+
+    public void removeResource(String name) {
+        resources.removeIf(resource -> resource.getName().equals(name));
+    }
+
+    public Resource getSelectedResource(String name) {
+        return resources.stream()
+                .filter(resource -> resource.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void displayResources() {
+        for (Resource resource : resources) {
+            resource.display();
         }
     }
 }

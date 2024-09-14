@@ -1,15 +1,12 @@
 package src.Resource;
 
-import src.Booking.Booking;
-
 public class ChildSeat extends Resource {
-
-    public ChildSeat(Booking booking) {
-        super(booking);
+    public ChildSeat(String name) {
+        super(name);
     }
 
     @Override
-    public String getDetails() {
-        return booking.toString() + " + ChildSeat Resource";
+    public void display() {
+        System.out.println("ChildSeat: " + name);
     }
 }

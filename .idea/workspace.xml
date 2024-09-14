@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ceb321-aef6-46e3-91dd-6c39e239e4d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Resource/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resource/ChildSeat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resource/Resource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resource/ResourceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resource/SetTopBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resource/ResourceDecorator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resource/ResourceMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Booking/BookingPaymentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingPaymentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Payment2/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Payment2/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resource/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resource/ChildSeat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/ChildSeat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resource/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resource/ResourceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/ResourceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resource/SetTopBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/SetTopBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/AuthenticationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/AuthenticationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ContentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ContentServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +51,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.PaymentMenu.executor": "Run",
+    "Application.ResourceMenu.executor": "Run",
     "Application.StatisticsMenu.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.PaymentServiceTest.executor": "Run",
@@ -58,6 +67,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
     "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Timo/Documents/de.leuphana.pruefungslesitung",
     "node.js.detected.package.eslint": "true",
@@ -65,7 +75,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -84,7 +94,20 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PaymentServiceTest">
+  <component name="RunManager" selected="Application.ResourceMenu">
+    <configuration name="ResourceMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.Resource.ResourceMenu" />
+      <module name="de.leuphana.pruefungslesitung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.Resource.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PaymentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="de.leuphana.pruefungslesitung" />
       <extension name="coverage">
@@ -117,6 +140,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ResourceMenu" />
         <item itemvalue="JUnit.PaymentServiceTest" />
         <item itemvalue="JUnit.PersonServiceTest" />
       </list>
@@ -166,7 +190,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/behavior/payment/PayPalProcessor.java</url>
           <line>5</line>
-          <properties class="src.behavior.payment.PayPalProcessor" method="transferAmount">
+          <properties class="src.behavior.payment.PayPalProcessor">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

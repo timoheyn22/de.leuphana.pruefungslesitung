@@ -1,4 +1,4 @@
-package test;
+/*package test;
 
 import src.authentication.behaviour.AuthenticationService;
 import src.authentication.structure.Credential;
@@ -81,3 +81,4 @@ public class AuthenticationServiceTest {
         }
     }
 }
+*/

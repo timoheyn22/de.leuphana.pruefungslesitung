@@ -1,4 +1,4 @@
-package src.Payment2;
+/*package src.Payment2;
 
 import src.Booking.Booking;
 import src.behavior.payment.Account;
@@ -12,3 +12,4 @@ public class GoogleWalletPayment extends PaymentService {
                 " für die Buchung: " + booking.getBody());
     }
 }
+*/

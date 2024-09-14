@@ -1,13 +1,17 @@
 package src.Resource;
 
-import src.Booking.Booking;
+public class Resource {
+    protected String name;
 
-public abstract class Resource {
-    protected Booking booking;
-
-    public Resource(Booking booking) {
-        this.booking = booking;
+    public Resource(String name) {
+        this.name = name;
     }
 
-    public abstract String getDetails();
+    public String getName() {
+        return name;
+    }
+
+    public void display() {
+        System.out.println("Resource: " + name);
+    }
 }

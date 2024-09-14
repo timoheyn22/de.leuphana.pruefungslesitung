@@ -1,16 +1,12 @@
 package src.Resource;
 
-import src.Booking.Booking;
-
 public class Car extends Resource {
-
-    public Car(Booking booking) {
-        super(booking);
+    public Car(String name) {
+        super(name);
     }
 
     @Override
-    public String getDetails() {
-        return booking.toString() + " + Car Resource";
+    public void display() {
+        System.out.println("Car: " + name);
     }
 }
-

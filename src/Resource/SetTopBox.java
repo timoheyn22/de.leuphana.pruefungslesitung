@@ -1,15 +1,12 @@
 package src.Resource;
 
-import src.Booking.Booking;
-
 public class SetTopBox extends Resource {
-
-    public SetTopBox(Booking booking) {
-        super(booking);
+    public SetTopBox(String name) {
+        super(name);
     }
 
     @Override
-    public String getDetails() {
-        return booking.toString() + " + SetTopBox Resource";
+    public void display() {
+        System.out.println("SetTopBox: " + name);
     }
 }
