@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ceb321-aef6-46e3-91dd-6c39e239e4d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Resource/ResourceDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resource/ResourceMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking/BookingPaymentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingPaymentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Payment2/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Payment2/PaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resource/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resource/ChildSeat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/ChildSeat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resource/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/Resource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resource/ResourceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/ResourceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resource/SetTopBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resource/SetTopBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/AuthenticationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/AuthenticationServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ContentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ContentServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ResourceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ResourceServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +45,7 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.PaymentServiceTest.executor": "Run",
     "JUnit.PersonServiceTest.executor": "Run",
+    "JUnit.ResourceServiceTest.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -94,7 +84,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ResourceMenu">
+  <component name="RunManager" selected="JUnit.ResourceServiceTest">
     <configuration name="ResourceMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.Resource.ResourceMenu" />
       <module name="de.leuphana.pruefungslesitung" />
@@ -138,8 +128,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ResourceServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="de.leuphana.pruefungslesitung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ResourceServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ResourceServiceTest" />
         <item itemvalue="Application.ResourceMenu" />
         <item itemvalue="JUnit.PaymentServiceTest" />
         <item itemvalue="JUnit.PersonServiceTest" />
