@@ -1,34 +1,19 @@
 package src.person.behaviour;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import src.person.creational.PersonFactory;
 import src.person.structure.Person;
 
-public class PersonService { // Klasse, die das Verhalten/Verwalten steuert.
+public class PersonService {
     private List<Person> persons = new ArrayList<>();
-    private Scanner scanner;
 
-    // Initialisiere den Scanner nur einmal im Konstruktor
-    public PersonService() {
-        scanner = new Scanner(System.in);
-    }
-
-    // Erstelle eine Person mit Benutzerinteraktion
-    public void createPerson() {
-        String type;
-        // Validierung der Eingabe für den Personentyp
-        do {
-            System.out.println("Enter type of person (natural/legal): ");
-            type = scanner.next();
-            if (!type.equalsIgnoreCase("natural") && !type.equalsIgnoreCase("legal")) {
-                System.out.println("Invalid type. Please enter 'natural' or 'legal'.");
-            }
-        } while (!type.equalsIgnoreCase("natural") && !type.equalsIgnoreCase("legal"));
-
-        System.out.println("Enter name: ");
-        String name = scanner.next();
+    // Erstelle eine Person basierend auf dem eingegebenen Typ und Namen
+    public void createPerson(String type, String name) {
+        if (type == null || name == null || type.isEmpty() || name.isEmpty()) {
+            throw new IllegalArgumentException("Type and name must not be null or empty");
+        }
 
         // Erstelle die Person basierend auf dem eingegebenen Typ
         Person person = PersonFactory.createPerson(type, name);
@@ -46,7 +31,6 @@ public class PersonService { // Klasse, die das Verhalten/Verwalten steuert.
             System.out.println(person.getName());
         }
     }
-
 
     public void deletePerson(String name) {
         Person toRemove = findPersonByName(name);

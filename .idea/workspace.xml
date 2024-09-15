@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ceb321-aef6-46e3-91dd-6c39e239e4d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/BookingServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/person/behaviour/PersonMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Booking/BookingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/person/behaviour/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/person/behaviour/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/BookingServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BookingServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PersonServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PersonServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +45,7 @@
   "keyToString": {
     "Application.BookingMenu.executor": "Run",
     "Application.PaymentMenu.executor": "Run",
+    "Application.PersonMenu.executor": "Run",
     "Application.ResourceMenu.executor": "Run",
     "Application.StatisticsMenu.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
@@ -102,12 +105,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ResourceMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.Resource.ResourceMenu" />
+    <configuration name="PersonMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.person.behaviour.PersonMenu" />
       <module name="de.leuphana.pruefungslesitung" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="src.Resource.*" />
+          <option name="PATTERN" value="src.person.behaviour.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,7 +133,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PaymentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PersonServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="de.leuphana.pruefungslesitung" />
       <extension name="coverage">
         <pattern>
@@ -139,7 +142,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.PaymentServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="test.PersonServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -163,10 +166,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.BookingServiceTest" />
+        <item itemvalue="JUnit.PersonServiceTest" />
         <item itemvalue="Application.BookingMenu" />
+        <item itemvalue="Application.PersonMenu" />
         <item itemvalue="JUnit.ResourceServiceTest" />
-        <item itemvalue="Application.ResourceMenu" />
-        <item itemvalue="JUnit.PaymentServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -205,20 +208,6 @@
           <url>file://$PROJECT_DIR$/src/behavior/payment/PaymentMenu.java</url>
           <line>97</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/behavior/payment/PayPalProcessor.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/behavior/payment/PayPalProcessor.java</url>
-          <line>5</line>
-          <properties class="src.behavior.payment.PayPalProcessor">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

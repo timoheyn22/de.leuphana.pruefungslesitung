@@ -1,71 +1,90 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import src.person.behaviour.*;
+import src.person.structure.*;
+import src.person.creational.*;
 
-import java.io.ByteArrayInputStream; // Zum Testen der Scanner Klasse
-import java.io.InputStream;
+import java.util.List;
 
-import src.person.behaviour.PersonService;
-public class PersonServiceTest {
+import static org.junit.jupiter.api.Assertions.*;
 
+class PersonServiceTest {
     private PersonService personService;
 
-    @BeforeEach // Annonation Before Each heißt: Wird vor jedem Test gemacht, damit jeder Test mit einer frischen Instanz arbeitet
-    public void setUp() throws Exception { // Throws Exception um sich nicht um nicht jede Exception einzeln behandeln zu müssen
+    @BeforeEach
+    void setUp() {
         personService = new PersonService();
     }
 
-    @AfterEach
-    void tearDown() throws Exception {
-        personService = null;
+    @Test
+    void testCreatePerson() {
+        // Test creating a natural person
+        personService.createPerson("natural", "John Doe");
+        List<Person> persons = personService.getPersons();
+        assertEquals(1, persons.size());
+        assertEquals("John Doe", persons.get(0).getName());
+
+        // Test creating a legal person
+        personService.createPerson("legal", "ABC Corp");
+        persons = personService.getPersons();
+        assertEquals(2, persons.size());
+        assertEquals("ABC Corp", persons.get(1).getName());
     }
 
     @Test
-    public void testCreatePerson() {
-        // Simuliere Benutzereingaben: Typ und Name
-        String simulatedInput = "natural\nJohn Doe\n";
-        InputStream originalIn = System.in;
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+    void testListPersons() {
+        // Create persons
+        personService.createPerson("natural", "Alice");
+        personService.createPerson("legal", "XYZ Inc.");
 
-        try {
-            personService.createPerson();  // Testet die Methode mit Scanner
-            assertEquals(1, personService.getPersons().size());
-            assertEquals("John Doe", personService.getPersons().get(0).getName());
-        } finally {
-            System.setIn(originalIn);  // Stelle den Original-InputStream wieder her
-        }
+        // Check if persons are listed correctly
+        List<Person> persons = personService.getPersons();
+        assertEquals(2, persons.size());
+        assertEquals("Alice", persons.get(0).getName());
+        assertEquals("XYZ Inc.", persons.get(1).getName());
     }
 
     @Test
-    public void testDeletePerson() {
-        // Simuliere Benutzereingaben für die Erstellung von Personen
-        String simulatedCreateInput = "natural\nJohn Doe\nlegal\nAcme Corp\n";
-        InputStream originalIn = System.in;
-        System.setIn(new ByteArrayInputStream(simulatedCreateInput.getBytes()));
+    void testFindPersonByName() {
+        // Create persons
+        personService.createPerson("natural", "Bob");
+        personService.createPerson("legal", "Tech Ltd.");
 
-        try {
-            // Erstelle zwei Personen
-            personService.createPerson();  // John Doe
-            personService.createPerson();  // Acme Corp
+        // Find existing person
+        Person person = personService.findPersonByName("Bob");
+        assertNotNull(person);
+        assertEquals("Bob", person.getName());
 
-            // Simuliere Benutzereingaben für das Löschen einer Person
-            String simulatedDeleteInput = "John Doe\n";
-            System.setIn(new ByteArrayInputStream(simulatedDeleteInput.getBytes()));
-            personService.deletePerson("John Doe");
-            assertEquals(1, personService.getPersons().size());
-            assertNull(personService.findPersonByName("John Doe"));
+        // Find non-existent person
+        Person nonExistentPerson = personService.findPersonByName("NonExistent");
+        assertNull(nonExistentPerson);
+    }
 
-            // Simuliere Benutzereingaben für das Löschen der zweiten Person
-            simulatedDeleteInput = "Acme Corp\n";
-            System.setIn(new ByteArrayInputStream(simulatedDeleteInput.getBytes()));
-            personService.deletePerson("Acme Corp");
-            assertTrue(personService.getPersons().isEmpty());
-        } finally {
-            System.setIn(originalIn);
-        }
+    @Test
+    void testDeletePerson() {
+        // Create persons
+        personService.createPerson("natural", "Charlie");
+        personService.createPerson("legal", "Company Inc.");
+
+        // Delete an existing person
+        personService.deletePerson("Charlie");
+        List<Person> persons = personService.getPersons();
+        assertEquals(1, persons.size());
+        assertNull(personService.findPersonByName("Charlie"));
+
+        // Try deleting a non-existent person
+        personService.deletePerson("NonExistent");
+        assertEquals(1, persons.size()); // No change in list size
+    }
+
+    @Test
+    void testCreatePersonInvalidInput() {
+        // Test invalid inputs
+        assertThrows(IllegalArgumentException.class, () -> personService.createPerson(null, "Invalid"));
+        assertThrows(IllegalArgumentException.class, () -> personService.createPerson("natural", null));
+        assertThrows(IllegalArgumentException.class, () -> personService.createPerson("", "Invalid"));
+        assertThrows(IllegalArgumentException.class, () -> personService.createPerson("natural", ""));
     }
 }
