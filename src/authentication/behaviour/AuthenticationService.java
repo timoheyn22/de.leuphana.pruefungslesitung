@@ -19,7 +19,7 @@ public class AuthenticationService {
         this.strategy = strategy;
     }
 
-    // Methode zur Authentifizierung
+    // Methode zum Authentifizieren mit gegebenen Credentials
     public boolean authenticate(Subject subject, Credential credential) throws AuthenticationException {
         if (strategy == null) {
             throw new AuthenticationException("No authentication strategy set");
@@ -34,36 +34,13 @@ public class AuthenticationService {
         return isAuthenticated;
     }
 
-    // Interaktive Eingabe der Credentials
-    public void enterCredentials() {
-        Scanner scanner = new Scanner(System.in);
+    // Getter und Setter für Credentials
+    public Credential getCredential() {
+        return credential;
+    }
 
-        System.out.println("Enter Username:");
-        String username = scanner.nextLine();
-
-        System.out.println("Enter Password:");
-        String password = scanner.nextLine();
-
-        credential.setUsername(username);
-        credential.setPassword(password);
-
-        // Zusätzliche Eingabeoptionen für Fingerabdruck und EyeScan
-        System.out.println("Do you want to enter Fingerprint data? (yes/no)");
-        String fingerprintInput = scanner.nextLine();
-        if (fingerprintInput.equalsIgnoreCase("yes")) {
-            System.out.println("Enter Fingerprint:");
-            String fingerprint = scanner.nextLine();
-            credential.setFingerprint(fingerprint);
-        }
-
-        System.out.println("Do you want to enter EyeScan data? (yes/no)");
-        String eyeScanInput = scanner.nextLine();
-        if (eyeScanInput.equalsIgnoreCase("yes")) {
-            System.out.println("Enter EyeScan data:");
-            String eyeScanData = scanner.nextLine();
-            credential.setEyeScanData(eyeScanData);
-        }
+    public void setCredential(Credential credential) {
+        this.credential = credential;
     }
 }
-
 
