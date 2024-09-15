@@ -1,14 +1,20 @@
 package src.CarReservationService;
 
 import src.Resource.*;
+import src.behavior.payment.Account;
+import src.behavior.payment.PayAmount;
+import src.behavior.payment.PaymentType;
 import src.content.behaviour.ContentService;
 import src.person.behaviour.*;
+import src.person.creational.PersonFactory;
 import src.person.structure.*;
 import src.Booking.BookingService;
 import src.behavior.payment.PaymentService;
 import src.behavior.statistics.StatisticsService;
 import src.authentication.behaviour.*;
 import src.authentication.structure.*;
+
+import java.math.BigDecimal;
 import java.util.Scanner;
 import src.Resource.Car;
 import src.Resource.SetTopBox;
@@ -77,7 +83,7 @@ public class CarReservationService {
             System.out.println("1. Daten eingeben");
             System.out.println("2. Daten löschen");
             System.out.println("3. Daten ausgeben");
-            System.out.println("4. Beenden");
+            System.out.println("4. Next");
             System.out.print("Wählen Sie eine Option: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -130,7 +136,7 @@ public class CarReservationService {
             System.out.println("1. Set authentication strategy");
             System.out.println("2. Enter credentials");
             System.out.println("3. Authenticate");
-            System.out.println("4. Exit");
+            System.out.println("4. Next");
             System.out.print("Please select an option: ");
             choice = scanner.nextInt();
             scanner.nextLine();  // Zeilenumbruch verarbeiten
@@ -146,7 +152,63 @@ public class CarReservationService {
                     authenticate();
                     break;
                 case 4:
-                    System.out.println("Exiting Authentication Menu.");
+                    menubooking();
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 4);
+    }
+    private void menubooking() {
+        while (true) {
+            System.out.println("Booking Menu:");
+            System.out.println("1. Daten eingeben");
+            System.out.println("2. Daten löschen");
+            System.out.println("3. Daten ausgeben");
+            System.out.println("4. Next");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();  // consume newline
+
+            switch (choice) {
+                case 1:
+                    createBooking();
+                    break;
+                case 2:
+                    deleteBooking();
+                    break;
+                case 3:
+                    bookingService.listBookings();
+                    break;
+                case 4:
+                    menupayment();
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+    private void menupayment() {
+        int choice;
+        do {
+            System.out.println("\nPayment Menu:");
+            System.out.println("1. Add Payment Data");
+            System.out.println("2. Delete Payment Data");
+            System.out.println("3. Display Payment Data");
+            System.out.println("4. Exit");
+            System.out.print("Please select an option: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    enterPaymentData(scanner);
+                    break;
+                case 2:
+                    deletePaymentData(scanner);
+                    break;
+                case 3:
+                    displayPaymentData(scanner);
+                    break;
+                case 4:
+                    System.out.println("Exiting Payment Menu.");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -165,6 +227,31 @@ public class CarReservationService {
         } catch (IllegalArgumentException e) {
             System.out.println("Failed to create person: " + e.getMessage());
         }
+    }
+
+    private void createBooking() {
+        System.out.println("Enter language (german/english): ");
+        String language = scanner.nextLine();
+
+        System.out.println("Enter booking ID: ");
+        String bookingId = scanner.nextLine();
+
+        System.out.println("Enter person name: ");
+        String personName = scanner.nextLine();
+
+        System.out.println("Enter resource name: ");
+        String resourceName = scanner.nextLine();
+
+        System.out.println("Enter price: ");
+        double price = scanner.nextDouble();
+
+        bookingService.createBooking(language, bookingId, personName, resourceName, price);
+    }
+
+    private void deleteBooking() {
+        System.out.println("Enter booking ID to delete: ");
+        String bookingId = scanner.nextLine();
+        bookingService.deleteBooking(bookingId);
     }
 
     private void deletePersonMenu() {
@@ -273,7 +360,81 @@ public class CarReservationService {
                 break;
         }
     }
+    private void enterPaymentData(Scanner scanner) {
+        // Enter sender account data
+        System.out.print("Enter sender account ID: ");
+        String senderId = scanner.next();
+        System.out.print("Enter sender balance: ");
+        BigDecimal senderBalance = scanner.nextBigDecimal();
 
+        // Enter sender person details
+        System.out.print("Enter sender person type (natural/legal): ");
+        String senderPersonType = scanner.next();
+        System.out.print("Enter sender person name: ");
+        String senderPersonName = scanner.next();
+        Person senderPerson = PersonFactory.createPerson(senderPersonType, senderPersonName);
+
+        // Enter receiver account data
+        System.out.print("Enter receiver account ID: ");
+        String receiverId = scanner.next();
+        System.out.print("Enter receiver balance: ");
+        BigDecimal receiverBalance = scanner.nextBigDecimal();
+
+        // Enter receiver person details
+        System.out.print("Enter receiver person type (natural/legal): ");
+        String receiverPersonType = scanner.next();
+        System.out.print("Enter receiver person name: ");
+        String receiverPersonName = scanner.next();
+        Person receiverPerson = PersonFactory.createPerson(receiverPersonType, receiverPersonName);
+
+        System.out.print("Enter payment amount: ");
+        BigDecimal paymentAmount = scanner.nextBigDecimal();
+
+        // Select payment type
+        System.out.println("Select Payment Type:");
+        System.out.println("1. PayPal");
+        System.out.println("2. Google Wallet");
+        System.out.println("3. Mobile Money Wallet");
+        int paymentTypeChoice = scanner.nextInt();
+        PaymentType paymentType = PaymentType.values()[paymentTypeChoice - 1];
+
+        // Enter booking type and payment method
+        System.out.print("Enter booking type (German/English): ");
+        String bookingType = scanner.next();
+        System.out.print("Enter payment method: ");
+        String paymentMethod = scanner.next();
+
+        // Create sender and receiver accounts with associated persons
+        Account sender = new Account(senderId, new PayAmount(senderBalance), senderPerson);
+        Account receiver = new Account(receiverId, new PayAmount(receiverBalance), receiverPerson);
+
+        System.out.print("Enter booking ID: ");
+        String bookingId = scanner.next();
+
+        // Process payment and update statistics
+        paymentService.payAmount(sender, receiver, new PayAmount(paymentAmount), paymentType, bookingType, paymentMethod, bookingId);
+
+        System.out.println("Payment processed successfully for booking ID: " + bookingId);
+    }
+
+    private void deletePaymentData(Scanner scanner) {
+        System.out.print("Enter the account ID to delete: ");
+        String accountId = scanner.next();
+        paymentService.deleteAccount(accountId);
+    }
+
+    private void displayPaymentData(Scanner scanner) {
+        System.out.print("Enter the account ID to display: ");
+        String accountId = scanner.next();
+        Account account = paymentService.getAccount(accountId);
+        if (account != null) {
+            System.out.println("Account ID: " + account.getAccountId());
+            System.out.println("Balance: " + account.getBalance().getAmount());
+            System.out.println("Account Owner: " + account.getOwner().getName());
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
     public static void main(String[] args) {
         PersonService personService = new PersonService();
         ResourceService resourceService = new ResourceService();
