@@ -1,81 +1,40 @@
 package src.behavior.statistics;
 
-import java.util.HashMap;
 import java.util.Map;
-// Service that applies visitors to count the number of bookings by payment method
+import src.Booking.*;
+import src.behavior.payment.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class StatisticsService {
-    private Map<String, Statistics> bookings;
+    private List<BookingWithPayment> bookings = new ArrayList<>();
 
-    public StatisticsService() {
-        bookings = new HashMap<>();
+    public void addBooking(Booking booking, PaymentType paymentType) {
+        bookings.add(new BookingWithPayment(booking, paymentType));
     }
 
-    // Add a booking with account ID as the key
-    public void addBooking(String accountId, Statistics booking) {
-        bookings.put(accountId, booking);
+    public void removeBooking(String bookingId) {
+        bookings.removeIf(bookingWithPayment -> bookingWithPayment.getBooking().getBookingId().equals(bookingId));
     }
 
-    // Remove a booking by account ID
-    public void removeBooking(String accountId) {
-        if (bookings.containsKey(accountId)) {
-            bookings.remove(accountId);
-            System.out.println("Booking with account ID " + accountId + " removed.");
-        } else {
-            System.out.println("Booking with account ID " + accountId + "not found.");
+    public Map<PaymentType, Integer> getGermanBookingsPaidBy(PaymentType paymentType) {
+        GermanBookingVisitor visitor = new GermanBookingVisitor();
+        for (BookingWithPayment bookingWithPayment : bookings) {
+            if (bookingWithPayment.getBooking() instanceof GermanBooking && bookingWithPayment.getPaymentType() == paymentType) {
+                bookingWithPayment.getBooking().accept(visitor, paymentType);
+            }
         }
+        return visitor.getPaymentStats();
     }
 
-    // Returns the number of German bookings paid via PayPal
-    public int getGermanBookingsPaidByPayPal() {
-        PayPalVisitor visitor = new PayPalVisitor();
-        for (Statistics booking : bookings.values()) {
-            booking.accept(visitor);
+    public Map<PaymentType, Integer> getEnglishBookingsPaidBy(PaymentType paymentType) {
+        EnglishBookingVisitor visitor = new EnglishBookingVisitor();
+        for (BookingWithPayment bookingWithPayment : bookings) {
+            if (bookingWithPayment.getBooking() instanceof EnglishBooking && bookingWithPayment.getPaymentType() == paymentType) {
+                bookingWithPayment.getBooking().accept(visitor, paymentType);
+            }
         }
-        return visitor.getGermanBookings();
-    }
-
-    // Returns the number of English bookings paid via PayPal
-    public int getEnglishBookingsPaidByPayPal() {
-        PayPalVisitor visitor = new PayPalVisitor();
-        for (Statistics booking : bookings.values()) {
-            booking.accept(visitor);
-        }
-        return visitor.getEnglishBookings();
-    }
-
-    // Returns the number of German bookings paid via Google Wallet
-    public int getGermanBookingsPaidByGoogleWallet() {
-        GoogleWalletVisitor visitor = new GoogleWalletVisitor();
-        for (Statistics booking : bookings.values()) {
-            booking.accept(visitor);
-        }
-        return visitor.getGermanBookings();
-    }
-
-    // Returns the number of English bookings paid via Google Wallet
-    public int getEnglishBookingsPaidByGoogleWallet() {
-        GoogleWalletVisitor visitor = new GoogleWalletVisitor();
-        for (Statistics booking : bookings.values()) {
-            booking.accept(visitor);
-        }
-        return visitor.getEnglishBookings();
-    }
-
-    // Returns the number of German bookings paid via Money Wallet
-    public int getGermanBookingsPaidByMoneyWallet() {
-        MoneyWalletVisitor visitor = new MoneyWalletVisitor();
-        for (Statistics booking : bookings.values()) {
-            booking.accept(visitor);
-        }
-        return visitor.getGermanBookings();
-    }
-
-    // Returns the number of English bookings paid via Money Wallet
-    public int getEnglishBookingsPaidByMoneyWallet() {
-        MoneyWalletVisitor visitor = new MoneyWalletVisitor();
-        for (Statistics booking : bookings.values()) {
-            booking.accept(visitor);
-        }
-        return visitor.getEnglishBookings();
+        return visitor.getPaymentStats();
     }
 }

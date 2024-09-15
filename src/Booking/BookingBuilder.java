@@ -11,6 +11,7 @@ public class BookingBuilder {
     protected Person person;  // Add person field
     protected Resource resource;  // Add resource field
     private String bookingType;
+    protected double price;
 
     public BookingBuilder setHeader(String header) {
         this.header = header;
@@ -24,6 +25,11 @@ public class BookingBuilder {
 
     public BookingBuilder setFooter(String footer) {
         this.footer = footer;
+        return this;
+    }
+
+    public BookingBuilder setPrice(double price) {  // New method for setting price
+        this.price = price;
         return this;
     }
 

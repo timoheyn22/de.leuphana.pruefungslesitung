@@ -1,6 +1,6 @@
 package src.behavior.payment;
 
-import src.behavior.statistics.*;
+
 import src.person.creational.PersonFactory;
 import src.person.structure.Person;
 
@@ -94,10 +94,13 @@ public class PaymentMenu {
         Account sender = new Account(senderId, new PayAmount(senderBalance), senderPerson);
         Account receiver = new Account(receiverId, new PayAmount(receiverBalance), receiverPerson);
 
-        // Process payment and update statistics
-        paymentService.payAmount(sender, receiver, new PayAmount(paymentAmount), paymentType, bookingType, paymentMethod);
+        System.out.print("Enter booking ID: ");
+        String bookingId = scanner.next();
 
-        System.out.println("Payment processed successfully.");
+        // Process payment and update statistics
+        paymentService.payAmount(sender, receiver, new PayAmount(paymentAmount), paymentType, bookingType, paymentMethod, bookingId);
+
+        System.out.println("Payment processed successfully for booking ID: " + bookingId);
     }
 
     private void deletePaymentData(Scanner scanner) {

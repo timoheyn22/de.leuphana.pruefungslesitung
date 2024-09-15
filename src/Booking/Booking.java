@@ -2,6 +2,8 @@ package src.Booking;
 
 import src.person.structure.Person;
 import src.Resource.Resource;
+import src.behavior.statistics.*;
+import src.behavior.payment.PaymentType;
 
 public abstract class Booking {
     protected String header;
@@ -10,6 +12,7 @@ public abstract class Booking {
     protected String bookingId;
     protected Person person; // Add person field
     protected Resource resource; // Add resource field
+    protected double price;
 
     public String getHeader() {
         return header;
@@ -34,4 +37,9 @@ public abstract class Booking {
     public Resource getResource() {
         return resource;
     }
-}
+    public double getPrice() {
+        return price;
+    }
+    public abstract void accept(StatisticsVisitor visitor, PaymentType paymentType);
+    }
+

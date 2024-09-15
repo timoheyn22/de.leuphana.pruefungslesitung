@@ -1,87 +1,110 @@
 package src.behavior.statistics;
 
+import src.Booking.*;
+import src.Resource.*;
+import src.person.behaviour.*;
+import src.behavior.payment.PaymentType;
+
 import java.util.Scanner;
 
 public class StatisticsMenu {
     private StatisticsService statisticsService;
-    private Scanner scanner;
+    private ResourceService resourceService;
+    private PersonService personService;
 
-    public StatisticsMenu() {
-        statisticsService = new StatisticsService();
-        scanner = new Scanner(System.in);
+    public StatisticsMenu(StatisticsService statisticsService, ResourceService resourceService, PersonService personService) {
+        this.statisticsService = statisticsService;
+        this.resourceService = resourceService;
+        this.personService = personService;
     }
 
     public void start() {
-        while (true) {
-            System.out.println("\nStatistics Menu");
-            System.out.println("1. Add booking");
-            System.out.println("2. Remove booking");
-            System.out.println("3. Display statistics");
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\nStatistics Menu:");
+            System.out.println("1. Enter data");
+            System.out.println("2. Delete data");
+            System.out.println("3. Display data");
             System.out.println("4. Exit");
-            System.out.print("Choose an option: ");
+            System.out.print("Please select an option: ");
+            choice = scanner.nextInt();
 
-            int option = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            switch (option) {
+            switch (choice) {
                 case 1:
-                    addBooking();
+                    enterData(scanner);
                     break;
                 case 2:
-                    removeBooking();
+                    deleteData(scanner);
                     break;
                 case 3:
-                    displayStatistics();
+                    displayData(scanner);
                     break;
                 case 4:
-                    return;
+                    System.out.println("Exiting Statistics Menu.");
+                    break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("Invalid choice. Please try again.");
             }
-        }
+        } while (choice != 4);
     }
 
-    private void addBooking() {
-        System.out.print("Enter account ID: ");
-        String accountId = scanner.nextLine();
-
+    private void enterData(Scanner scanner) {
         System.out.print("Enter booking type (German/English): ");
-        String bookingType = scanner.nextLine();
+        String bookingType = scanner.next();
+        System.out.print("Enter booking ID: ");
+        String bookingId = scanner.next();
+        System.out.print("Enter person name: ");
+        String personName = scanner.next();
+        System.out.print("Enter person Type(legal/natural): ");
+        String personType = scanner.next();
+        System.out.print("Enter resource name: ");
+        String resourceName = scanner.next();
+        System.out.print("Enter resource Type(Car/SetTopBox/ChildSeat): ");
+        String resourceType = scanner.next();
+        System.out.print("Enter price: ");
+        double price = scanner.nextDouble();
+        System.out.print("Enter payment type (1 for PayPal, 2 for Google Wallet, 3 for Mobile Money Wallet): ");
+        PaymentType paymentType = PaymentType.values()[scanner.nextInt() - 1];
+        personService.createPerson(personType, personName);
 
-        System.out.print("Enter payment method (PayPal/GoogleWallet/MoneyWallet): ");
-        String paymentMethod = scanner.nextLine();
+        Resource resource = null;
 
-        if ("German".equalsIgnoreCase(bookingType)) {
-            statisticsService.addBooking(accountId, new GermanBookingStatistics(paymentMethod));
-        } else if ("English".equalsIgnoreCase(bookingType)) {
-            statisticsService.addBooking(accountId, new EnglishBookingStatistics(paymentMethod));
-        } else {
-            System.out.println("Invalid booking type.");
+        if (resourceType.equalsIgnoreCase("Car")) {
+            resource = new Car(resourceName);
+        } else if (resourceType.equalsIgnoreCase("SetTopBox")) {
+            resource = new SetTopBox(resourceName);
+        } else if (resourceType.equalsIgnoreCase("ChildSeat")) {
+            resource = new ChildSeat(resourceName);
         }
-
-        System.out.println("Booking added successfully.");
+        resourceService.addResource(resource);
+        BookingService bookingService = new BookingService(personService,resourceService);
+        bookingService.createBooking(bookingType, bookingId, personName, resourceName, price);
+        Booking booking = bookingService.getBookingById(bookingId);
+        statisticsService.addBooking(booking, paymentType);
     }
 
-    private void removeBooking() {
-        System.out.print("Enter account ID to remove: ");
-        String accountId = scanner.nextLine();
-
-        statisticsService.removeBooking(accountId);
+    private void deleteData(Scanner scanner) {
+        System.out.print("Enter booking ID to delete: ");
+        String bookingId = scanner.next();
+        statisticsService.removeBooking(bookingId);
     }
 
-    private void displayStatistics() {
-        System.out.println("\n--- Statistics ---");
-
-        System.out.println("German bookings paid via PayPal: " + statisticsService.getGermanBookingsPaidByPayPal());
-        System.out.println("English bookings paid via PayPal: " + statisticsService.getEnglishBookingsPaidByPayPal());
-        System.out.println("German bookings paid via Google Wallet: " + statisticsService.getGermanBookingsPaidByGoogleWallet());
-        System.out.println("English bookings paid via Google Wallet: " + statisticsService.getEnglishBookingsPaidByGoogleWallet());
-        System.out.println("German bookings paid via Money Wallet: " + statisticsService.getGermanBookingsPaidByMoneyWallet());
-        System.out.println("English bookings paid via Money Wallet: " + statisticsService.getEnglishBookingsPaidByMoneyWallet());
+    private void displayData(Scanner scanner) {
+        System.out.print("Enter payment type (1 for PayPal, 2 for Google Wallet, 3 for Mobile Money Wallet): ");
+        PaymentType paymentType = PaymentType.values()[scanner.nextInt() - 1];
+        System.out.println("German bookings paid by " + paymentType + ": " +
+                statisticsService.getGermanBookingsPaidBy(paymentType));
+        System.out.println("English bookings paid by " + paymentType + ": " +
+                statisticsService.getEnglishBookingsPaidBy(paymentType));
     }
 
     public static void main(String[] args) {
-        StatisticsMenu menu = new StatisticsMenu();
+        StatisticsService statisticsService = new StatisticsService();
+        ResourceService resourceService = new ResourceService();
+        PersonService personService = new PersonService();
+        StatisticsMenu menu = new StatisticsMenu(statisticsService, resourceService, personService);
         menu.start();
     }
 }

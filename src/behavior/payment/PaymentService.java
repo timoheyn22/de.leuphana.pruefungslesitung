@@ -45,7 +45,7 @@ public class PaymentService {
         return accounts.get(accountId);
     }
 
-    public void payAmount(Account senderAccount, Account receiverAccount, PayAmount amount, PaymentType paymentType, String bookingType, String paymentMethod) {
+    public void payAmount(Account senderAccount, Account receiverAccount, PayAmount amount, PaymentType paymentType, String bookingType, String paymentMethod, String bookingId) {
         PaymentProcessor processor;
 
         switch (paymentType) {
@@ -62,8 +62,8 @@ public class PaymentService {
                 throw new IllegalArgumentException("Unsupported payment type");
         }
 
-        // Process the payment
-        processor.processPayment(senderAccount, receiverAccount, amount);
+        // Process the payment with the booking ID
+        processor.processPayment(senderAccount, receiverAccount, amount, bookingId);
 
         // After payment, add accounts if they don't exist already and update statistics
         addAccount(senderAccount, bookingType, paymentMethod);

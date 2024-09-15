@@ -67,22 +67,13 @@ public class BookingMenu {
         System.out.println("Enter person name: ");
         String personName = scanner.nextLine();
 
-        Person person = personService.findPersonByName(personName);
-        if (person == null) {
-            System.out.println("Person not found: " + personName);
-            return;
-        }
-
         System.out.println("Enter resource name: ");
         String resourceName = scanner.nextLine();
 
-        Resource resource = resourceService.getSelectedResource(resourceName);
-        if (resource == null) {
-            System.out.println("Resource not found: " + resourceName);
-            return;
-        }
+        System.out.println("Enter price: ");
+        double price = scanner.nextDouble();
 
-        bookingService.createBooking(language, bookingId, personName, resourceName);
+        bookingService.createBooking(language, bookingId, personName, resourceName, price);
     }
 
     private void deleteBooking() {

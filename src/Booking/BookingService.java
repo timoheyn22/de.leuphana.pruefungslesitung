@@ -18,24 +18,16 @@ public class BookingService {
         this.resourceService = resourceService;
     }
 
-    public void createBooking(String language, String bookingId, String personName, String resourceName) {
-        Person person = personService.findPersonByName(personName);
-        if (person == null) {
-            System.out.println("Person not found: " + personName);
-            return;
-        }
-
-        Resource resource = resourceService.getSelectedResource(resourceName);
-        if (resource == null) {
-            System.out.println("Resource not found: " + resourceName);
-            return;
-        }
+    public void createBooking(String language, String bookingId, String personName, String resourceName, double price) {
+        String body = "Person: " + personName + ", Resource: " + resourceName;
 
         BookingBuilder builder = new BookingBuilder()
                 .setBookingId(bookingId)
-                .setPerson(person)
-                .setResource(resource)
-                .setBookingType(language);
+                .setBody(body)
+                .setPrice(price)
+                .setBookingType(language)
+                .setPerson( personService.findPersonByName(personName))
+                .setResource(resourceService.getSelectedResource(resourceName));
 
         Booking booking = builder.build();
         bookings.add(booking);
@@ -45,6 +37,15 @@ public class BookingService {
     public void deleteBooking(String bookingId) {
         bookings.removeIf(booking -> booking.getBookingId().equals(bookingId));
         System.out.println("Booking with ID: " + bookingId + " has been removed.");
+    }
+
+    public String getBookingFooterById(String bookingId) {
+        for (Booking booking : bookings) {
+            if (booking.getBookingId().equals(bookingId)) {
+                return booking.getFooter();  // Return the footer
+            }
+        }
+        return "Booking not found with ID: " + bookingId;
     }
 
     public String getBookingBodyById(String bookingId) {
@@ -67,5 +68,14 @@ public class BookingService {
                     "Body: " + booking.getBody() + "\n" +
                     "Footer: " + booking.getFooter() + "\n");
         }
+    }
+
+    public Booking getBookingById(String bookingId) {
+        for (Booking booking : bookings) {
+            if (booking.getBookingId().equals(bookingId)) {
+                return booking;
+            }
+        }
+        return null;
     }
 }
