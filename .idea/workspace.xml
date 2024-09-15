@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ceb321-aef6-46e3-91dd-6c39e239e4d2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CarReservationService/CarReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarReservationService/CarReservationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +41,7 @@
   "keyToString": {
     "Application.BookingMenu.executor": "Run",
     "Application.CarReservationService.executor": "Run",
+    "Application.ContentMenu.executor": "Run",
     "Application.PaymentMenu.executor": "Run",
     "Application.PersonMenu.executor": "Run",
     "Application.ResourceMenu.executor": "Run",
@@ -102,17 +104,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookingServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ContentMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.content.behaviour.ContentMenu" />
       <module name="de.leuphana.pruefungslesitung" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="src.content.behaviour.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.BookingServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,10 +165,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.CarReservationService" />
+        <item itemvalue="Application.ContentMenu" />
         <item itemvalue="JUnit.StatisticsServiceTest" />
         <item itemvalue="JUnit.ResourceServiceTest" />
         <item itemvalue="JUnit.PersonServiceTest" />
-        <item itemvalue="JUnit.BookingServiceTest" />
       </list>
     </recent_temporary>
   </component>

@@ -1,10 +1,14 @@
 package src.CarReservationService;
 
+import src.Booking.Booking;
 import src.Resource.*;
 import src.behavior.payment.Account;
 import src.behavior.payment.PayAmount;
 import src.behavior.payment.PaymentType;
 import src.content.behaviour.ContentService;
+import src.content.structure.Content;
+import src.content.structure.File;
+import src.content.structure.Folder;
 import src.person.behaviour.*;
 import src.person.creational.PersonFactory;
 import src.person.structure.*;
@@ -193,7 +197,7 @@ public class CarReservationService {
             System.out.println("1. Add Payment Data");
             System.out.println("2. Delete Payment Data");
             System.out.println("3. Display Payment Data");
-            System.out.println("4. Exit");
+            System.out.println("4. Next");
             System.out.print("Please select an option: ");
             choice = scanner.nextInt();
 
@@ -208,7 +212,65 @@ public class CarReservationService {
                     displayPaymentData(scanner);
                     break;
                 case 4:
-                    System.out.println("Exiting Payment Menu.");
+                    menuContent();
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 4);
+    }
+    private void menuContent() {
+        int choice;
+
+        do {
+            System.out.println("\nContent Menu:");
+            System.out.println("1. Add content");
+            System.out.println("2. Remove content");
+            System.out.println("3. Display contents");
+            System.out.println("4. Next");
+            System.out.print("Please select an option: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    addContent(scanner);
+                    break;
+                case 2:
+                    removeContent(scanner);
+                    break;
+                case 3:
+                    displayContents();
+                    break;
+                case 4:
+                    menuStatistics();
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 4);
+    }
+    private void menuStatistics() {
+        int choice;
+
+        do {
+            System.out.println("\nStatistics Menu:");
+            System.out.println("1. Enter data");
+            System.out.println("2. Delete data");
+            System.out.println("3. Display data");
+            System.out.println("4. Exit");
+            System.out.print("Please select an option: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    enterData(scanner);
+                    break;
+                case 2:
+                    deleteData(scanner);
+                    break;
+                case 3:
+                    displayData(scanner);
+                    break;
+                case 4:
+                    System.out.println("Exiting Statistics Menu.");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -435,6 +497,93 @@ public class CarReservationService {
             System.out.println("Account not found.");
         }
     }
+    private void addContent(Scanner scanner) {
+        System.out.println("Enter content type (file/folder): ");
+        String type = scanner.next();
+
+        System.out.println("Enter content name: ");
+        String name = scanner.next();
+
+        Content content = null;
+
+        if (type.equalsIgnoreCase("file")) {
+            content = new File(name);
+        } else if (type.equalsIgnoreCase("folder")) {
+            content = new Folder(name);
+        } else {
+            System.out.println("Invalid content type. Please enter 'file' or 'folder'.");
+            return;  // Abbrechen, wenn der Inhaltstyp ungültig ist
+        }
+
+        contentService.addContent(content);
+        System.out.println("Added " + type + " with name: " + name);
+    }
+
+    private void removeContent(Scanner scanner) {
+        System.out.println("Enter content name to remove: ");
+        String name = scanner.next();
+
+        // Hier kannst du entscheiden, ob es eine Datei oder ein Ordner ist
+        // Für dieses Beispiel gehen wir davon aus, dass nur Dateien entfernt werden
+        File content = new File(name);
+
+        contentService.removeContent(content);
+        System.out.println("Removed content with name: " + name);
+    }
+
+    private void displayContents() {
+        System.out.println("Displaying all contents:");
+        contentService.displayContents();
+    }
+    private void enterData(Scanner scanner) {
+        System.out.print("Enter booking type (German/English): ");
+        String bookingType = scanner.next();
+        System.out.print("Enter booking ID: ");
+        String bookingId = scanner.next();
+        System.out.print("Enter person name: ");
+        String personName = scanner.next();
+        System.out.print("Enter person Type(legal/natural): ");
+        String personType = scanner.next();
+        System.out.print("Enter resource name: ");
+        String resourceName = scanner.next();
+        System.out.print("Enter resource Type(Car/SetTopBox/ChildSeat): ");
+        String resourceType = scanner.next();
+        System.out.print("Enter price: ");
+        double price = scanner.nextDouble();
+        System.out.print("Enter payment type (1 for PayPal, 2 for Google Wallet, 3 for Mobile Money Wallet): ");
+        PaymentType paymentType = PaymentType.values()[scanner.nextInt() - 1];
+        personService.createPerson(personType, personName);
+
+        Resource resource = null;
+
+        if (resourceType.equalsIgnoreCase("Car")) {
+            resource = new Car(resourceName);
+        } else if (resourceType.equalsIgnoreCase("SetTopBox")) {
+            resource = new SetTopBox(resourceName);
+        } else if (resourceType.equalsIgnoreCase("ChildSeat")) {
+            resource = new ChildSeat(resourceName);
+        }
+        resourceService.addResource(resource);
+        BookingService bookingService = new BookingService(personService,resourceService);
+        bookingService.createBooking(bookingType, bookingId, personName, resourceName, price);
+        Booking booking = bookingService.getBookingById(bookingId);
+        statisticsService.addBooking(booking, paymentType);
+    }
+    private void deleteData(Scanner scanner) {
+        System.out.print("Enter booking ID to delete: ");
+        String bookingId = scanner.next();
+        statisticsService.removeBooking(bookingId);
+    }
+
+    private void displayData(Scanner scanner) {
+        System.out.print("Enter payment type (1 for PayPal, 2 for Google Wallet, 3 for Mobile Money Wallet): ");
+        PaymentType paymentType = PaymentType.values()[scanner.nextInt() - 1];
+        System.out.println("German bookings paid by " + paymentType + ": " +
+                statisticsService.getGermanBookingsPaidBy(paymentType));
+        System.out.println("English bookings paid by " + paymentType + ": " +
+                statisticsService.getEnglishBookingsPaidBy(paymentType));
+    }
+
     public static void main(String[] args) {
         PersonService personService = new PersonService();
         ResourceService resourceService = new ResourceService();
