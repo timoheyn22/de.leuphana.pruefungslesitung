@@ -2,7 +2,6 @@ package src.Booking;
 
 import src.person.behaviour.PersonService;
 import src.Resource.ResourceService;
-import src.person.structure.Person;
 import src.Resource.Resource;
 
 import java.util.Scanner;

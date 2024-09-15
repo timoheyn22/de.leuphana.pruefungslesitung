@@ -1,6 +1,6 @@
 package src.person.behaviour;
 
-import src.behavior.statistics.StatisticsMenu;
+
 
 import java.util.Scanner;
 
