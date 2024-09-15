@@ -5,32 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ceb321-aef6-46e3-91dd-6c39e239e4d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/behavior/statistics/BookingWithPayment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/behavior/statistics/EnglishBookingVisitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/behavior/statistics/StatisticsVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking/BookingBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking/BookingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking/EnglishBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/EnglishBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking/GermanBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/GermanBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/payment/GoogleWalletProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/payment/GoogleWalletProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/payment/MobileMoneyWalletProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/payment/MobileMoneyWalletProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/payment/PayPalProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/payment/PayPalProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/behavior/payment/PaymentMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/payment/PaymentMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/payment/PaymentProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/payment/PaymentProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/behavior/payment/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/payment/PaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/BookingVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/EnglishBookingStatistics.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/GermanBookingStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/statistics/GermanBookingVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/GoogleWalletVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/MoneyWalletVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/PayPalVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/Statistics.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/StatisticsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/statistics/StatisticsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/behavior/statistics/StatisticsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/behavior/statistics/StatisticsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/BookingServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BookingServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/PaymentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PaymentServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,33 +88,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.StatisticsMenu">
-    <configuration name="BookingMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.Booking.BookingMenu" />
-      <module name="de.leuphana.pruefungslesitung" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.Booking.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PaymentMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.behavior.payment.PaymentMenu" />
-      <module name="de.leuphana.pruefungslesitung" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.behavior.payment.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ResourceServiceTest">
     <configuration name="StatisticsMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.behavior.statistics.StatisticsMenu" />
       <module name="de.leuphana.pruefungslesitung" />
@@ -182,13 +132,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PersonServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="de.leuphana.pruefungslesitung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.PersonServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ResourceServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="de.leuphana.pruefungslesitung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ResourceServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StatisticsMenu" />
-        <item itemvalue="Application.PaymentMenu" />
-        <item itemvalue="JUnit.PaymentServiceTest" />
+        <item itemvalue="JUnit.ResourceServiceTest" />
+        <item itemvalue="JUnit.PersonServiceTest" />
         <item itemvalue="JUnit.BookingServiceTest" />
-        <item itemvalue="Application.BookingMenu" />
+        <item itemvalue="JUnit.PaymentServiceTest" />
+        <item itemvalue="Application.StatisticsMenu" />
       </list>
     </recent_temporary>
   </component>

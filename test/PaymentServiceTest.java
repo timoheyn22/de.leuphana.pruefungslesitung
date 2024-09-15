@@ -1,9 +1,8 @@
-/*package test;
+package test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import src.behavior.payment.*;
-import src.behavior.statistics.*;
 import src.person.creational.PersonFactory;
 import src.person.structure.Person;
 
@@ -14,12 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class PaymentServiceTest {
 
     private PaymentService paymentService;
-    private StatisticsService statisticsService;
+
 
     @BeforeEach
     public void setUp() {
-        statisticsService = new StatisticsService();
-        paymentService = new PaymentService(statisticsService);
+        paymentService = new PaymentService();
     }
 
     @Test
@@ -104,27 +102,8 @@ class PaymentServiceTest {
     }
 
     @Test
-    public void testUpdateStatisticsOnAddAndDelete() {
-        Person owner1 = PersonFactory.createPerson("natural", "George");
-        Person owner2 = PersonFactory.createPerson("legal", "Hacker Corp");
-
-        Account account1 = new Account("A1", new PayAmount(BigDecimal.valueOf(1500)), owner1);
-        Account account2 = new Account("A2", new PayAmount(BigDecimal.valueOf(800)), owner2);
-
-        paymentService.addAccount(account1, "German", "PayPal");
-        paymentService.addAccount(account2, "English", "GoogleWallet");
-
-        assertEquals(1, statisticsService.getGermanBookingsPaidByPayPal());
-        assertEquals(1, statisticsService.getEnglishBookingsPaidByGoogleWallet());
-
-        paymentService.deleteAccount("A1");
-        assertEquals(0, statisticsService.getGermanBookingsPaidByPayPal());
-    }
-
-    @Test
     public void testInvalidAccountDeletion() {
         paymentService.deleteAccount("NonExistentID"); // Should not throw an exception
         assertNull(paymentService.getAccount("NonExistentID"));
     }
 }
-*/

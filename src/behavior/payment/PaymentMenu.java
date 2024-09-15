@@ -1,6 +1,5 @@
 package src.behavior.payment;
 
-
 import src.person.creational.PersonFactory;
 import src.person.structure.Person;
 
@@ -8,12 +7,13 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class PaymentMenu {
+
+
     private PaymentService paymentService;
 
-    public PaymentMenu(StatisticsService statisticsService) {
-        paymentService = new PaymentService(statisticsService);
+    public PaymentMenu(PaymentService paymentService) {
+        this.paymentService = paymentService;
     }
-
     public void start() {
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -123,8 +123,8 @@ public class PaymentMenu {
     }
 
     public static void main(String[] args) {
-        StatisticsService statisticsService = new StatisticsService();
-        PaymentMenu menu = new PaymentMenu(statisticsService);
+        PaymentService paymentService = new PaymentService();
+        PaymentMenu menu = new PaymentMenu(paymentService);
         menu.start();
     }
 }
